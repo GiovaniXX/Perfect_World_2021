@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,6 +11,25 @@ namespace Perfect_World_2021
         public Form1_pwe_2021()
         {
             InitializeComponent();
+            LoadWeaponItems();
+            LoadArmorItems();
+            LoadAccessoryItems();
+
+            // Adiciona os eventos para carregar subtipos, itens e ícones
+            // Weapon
+            comboBox3_weapon_itens_type.SelectedIndexChanged += ComboBox3_weapon_itens_type_SelectedIndexChanged;
+            comboBox4_weapon_itens_sub_type.SelectedIndexChanged += ComboBox4_weapon_itens_sub_type_SelectedIndexChanged;
+            comboBox5_weapon_itens_item_name.SelectedIndexChanged += ComboBox5_weapon_itens_item_name_SelectedIndexChanged;
+
+            // Armor
+            comboBox3_armor_itens_type.SelectedIndexChanged += ComboBox3_armor_itens_type_SelectedIndexChanged;
+            comboBox4_armor_itens_sub_type.SelectedIndexChanged += ComboBox4_armor_itens_sub_type_SelectedIndexChanged;
+            comboBox5_armor_itens_item_name.SelectedIndexChanged += ComboBox5_armor_itens_item_name_SelectedIndexChanged;
+
+            // Accessory
+            comboBox3_accessory_itens_type.SelectedIndexChanged += ComboBox3_accessory_itens_type_SelectedIndexChanged;
+            comboBox4_accessory_itens_sub_type.SelectedIndexChanged += ComboBox4_accessory_itens_sub_type_SelectedIndexChanged;
+            comboBox5_accessory_itens_item_name.SelectedIndexChanged += ComboBox5_accessory_itens_item_name_SelectedIndexChanged;
         }
 
         private void button4_armor_add_Click(object sender, EventArgs e)
@@ -217,7 +238,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void button4_accessory_add_Click(object sender, EventArgs e) 
+        private void button4_accessory_add_Click(object sender, EventArgs e)
         {
             // Verifica se os campos estão preenchidos
             if (string.IsNullOrWhiteSpace(comboBox2_accessory_bonus_list.Text) ||
@@ -258,7 +279,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void button2_accessory_down_Click(object sender, EventArgs e) 
+        private void button2_accessory_down_Click(object sender, EventArgs e)
         {
             // Obtem o texto completo do TextBox
             string[] lines = textBox1_accessory_bonus_list.Lines;
@@ -289,7 +310,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void button1_accessory_up_Click(object sender, EventArgs e) 
+        private void button1_accessory_up_Click(object sender, EventArgs e)
         {
             // Obtem o texto completo do TextBox
             string[] lines = textBox1_accessory_bonus_list.Lines;
@@ -349,7 +370,7 @@ namespace Perfect_World_2021
                 pictureBox1
             );
 
-            Necklace necklace = new Necklace();
+            Accessory necklace = new Accessory();
             necklace.UpdateGeneralTab(
                 selectedNecklaceSubType,
                 selectedNecklaceItemName,
@@ -477,7 +498,7 @@ namespace Perfect_World_2021
             textBox2_weapon_bonus_list_bonus.Text = string.Empty;
         }
 
-        private void button3_accessory_clear_Click(object sender, EventArgs e) 
+        private void button3_accessory_clear_Click(object sender, EventArgs e)
         {
             // Limpa o conteúdo do TextBox
             textBox2_accessory_bonus_list_bonus.Text = string.Empty;
@@ -499,6 +520,462 @@ namespace Perfect_World_2021
         {
             // Limpa o conteúdo do TextBox
             textBox1_armor_generate.Clear();
+        }
+
+        // Weapon
+        private void LoadWeaponItems()
+        {
+            string weaponItemsPath = @"E:\Projetos Csharp\Perfect_World_2021\items\Weapons";
+
+            // Verifica se o diretório existe
+            if (Directory.Exists(weaponItemsPath))
+            {
+                // Obtém todos os diretórios no caminho especificado
+                string[] directories = Directory.GetDirectories(weaponItemsPath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox3_weapon_itens_type.Items.Clear();
+
+                // Adiciona os nomes das pastas ao ComboBox
+                foreach (string directory in directories)
+                {
+                    comboBox3_weapon_itens_type.Items.Add(Path.GetFileName(directory));
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox3_weapon_itens_type.Items.Count < 0)
+                {
+                    comboBox3_weapon_itens_type.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("O diretório especificado não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadWeaponSubTypes(string selectedFolder)
+        {
+            string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Weapons";
+            string folderPath = Path.Combine(basePath, selectedFolder);
+
+            // Verifica se a pasta selecionada existe
+            if (Directory.Exists(folderPath))
+            {
+                // Obtém todas as subpastas
+                string[] subDirectories = Directory.GetDirectories(folderPath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox4_weapon_itens_sub_type.Items.Clear();
+
+                // Adiciona os nomes das subpastas ao ComboBox
+                foreach (string subDirectory in subDirectories)
+                {
+                    comboBox4_weapon_itens_sub_type.Items.Add(Path.GetFileName(subDirectory));
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox4_weapon_itens_sub_type.Items.Count > 0)
+                {
+                    comboBox4_weapon_itens_sub_type.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("A pasta selecionada não foi encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ComboBox3_weapon_itens_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtém o item selecionado no comboBox3_weapon_itens_type
+            string selectedFolder = comboBox3_weapon_itens_type.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedFolder))
+            {
+                LoadWeaponSubTypes(selectedFolder);
+            }
+        }
+
+        private void LoadWeaponItemNames(string selectedSubType)
+        {
+            string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Weapons";
+            string subTypeFolderPath = Path.Combine(basePath, selectedSubType, selectedSubType);
+
+            // Constrói o caminho do arquivo .txt
+            string filePath = Path.Combine(subTypeFolderPath, selectedSubType + ".txt");
+
+            // Verifica se o arquivo existe
+            if (File.Exists(filePath))
+            {
+                // Lê todas as linhas do arquivo
+                string[] itemNames = File.ReadAllLines(filePath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox5_weapon_itens_item_name.Items.Clear();
+
+                // Adiciona os nomes dos itens ao ComboBox
+                foreach (string itemName in itemNames)
+                {
+                    comboBox5_weapon_itens_item_name.Items.Add(itemName.Trim());
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox5_weapon_itens_item_name.Items.Count > 0)
+                {
+                    comboBox5_weapon_itens_item_name.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show($"O arquivo de itens para '{selectedSubType}' não foi encontrado no caminho esperado:\n{filePath}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ComboBox4_weapon_itens_sub_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtém o item selecionado no comboBox4_weapon_itens_sub_type
+            string selectedSubType = comboBox4_weapon_itens_sub_type.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedSubType))
+            {
+                LoadWeaponItemNames(selectedSubType);
+            }
+        }
+
+        private void LoadWeaponIcon(string selectedItemName)
+        {
+            string iconsBasePath = @"E:\Projetos Csharp\Perfect_World_2021\items\icons";
+
+            // Procura o arquivo de ícone recursivamente
+            string[] iconFiles = Directory.GetFiles(iconsBasePath, selectedItemName + ".png", SearchOption.AllDirectories);
+
+            if (iconFiles.Length > 0)
+            {
+                // Carrega o primeiro arquivo encontrado no PictureBox
+                pictureBox1.Image = Image.FromFile(iconFiles[0]);
+            }
+            else
+            {
+                // Limpa o PictureBox se o ícone não for encontrado
+                pictureBox1.Image = null;
+                MessageBox.Show($"O ícone para o item '{selectedItemName}' não foi encontrado em nenhuma subpasta de:\n{iconsBasePath}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ComboBox5_weapon_itens_item_name_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtém o item selecionado no comboBox5_weapon_itens_item_name
+            string selectedItemName = comboBox5_weapon_itens_item_name.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedItemName))
+            {
+                LoadWeaponIcon(selectedItemName);
+            }
+        }
+
+        // Armor
+        private void LoadArmorItems() 
+        {
+            string armorItemsPath = @"E:\Projetos Csharp\Perfect_World_2021\items\Armors";
+
+            // Verifica se o diretório existe
+            if (Directory.Exists(armorItemsPath))
+            {
+                // Obtém todos os diretórios no caminho especificado
+                string[] directories = Directory.GetDirectories(armorItemsPath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox3_armor_itens_type.Items.Clear();
+
+                // Adiciona os nomes das pastas ao ComboBox
+                foreach (string directory in directories)
+                {
+                    comboBox3_armor_itens_type.Items.Add(Path.GetFileName(directory));
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox3_armor_itens_type.Items.Count < 0)
+                {
+                    comboBox3_armor_itens_type.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("O diretório especificado não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadArmorSubTypes(string selectedFolder) 
+        {
+            string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Armors";
+            string folderPath = Path.Combine(basePath, selectedFolder);
+
+            // Verifica se a pasta selecionada existe
+            if (Directory.Exists(folderPath))
+            {
+                // Obtém todas as subpastas
+                string[] subDirectories = Directory.GetDirectories(folderPath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox4_armor_itens_sub_type.Items.Clear();
+
+                // Adiciona os nomes das subpastas ao ComboBox
+                foreach (string subDirectory in subDirectories)
+                {
+                    comboBox4_armor_itens_sub_type.Items.Add(Path.GetFileName(subDirectory));
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox4_armor_itens_sub_type.Items.Count > 0)
+                {
+                    comboBox4_armor_itens_sub_type.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("A pasta selecionada não foi encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ComboBox3_armor_itens_type_SelectedIndexChanged(object sender, EventArgs e) 
+        {
+            // Obtém o item selecionado no comboBox3_weapon_itens_type
+            string selectedFolder = comboBox3_armor_itens_type.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedFolder))
+            {
+                LoadArmorSubTypes(selectedFolder); 
+            }
+        }
+
+        private void LoadArmorItemNames(string selectedSubType) 
+        {
+            string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Armors";
+            string subTypeFolderPath = Path.Combine(basePath, selectedSubType, selectedSubType);
+
+            // Constrói o caminho do arquivo .txt
+            string filePath = Path.Combine(subTypeFolderPath, selectedSubType + ".txt");
+
+            // Verifica se o arquivo existe
+            if (File.Exists(filePath))
+            {
+                // Lê todas as linhas do arquivo
+                string[] itemNames = File.ReadAllLines(filePath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox5_armor_itens_item_name.Items.Clear();
+
+                // Adiciona os nomes dos itens ao ComboBox
+                foreach (string itemName in itemNames)
+                {
+                    comboBox5_armor_itens_item_name.Items.Add(itemName.Trim());
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox5_armor_itens_item_name.Items.Count > 0)
+                {
+                    comboBox5_armor_itens_item_name.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show($"O arquivo de itens para '{selectedSubType}' não foi encontrado no caminho esperado:\n{filePath}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ComboBox4_armor_itens_sub_type_SelectedIndexChanged(object sender, EventArgs e) 
+        {
+            // Obtém o item selecionado no comboBox4_weapon_itens_sub_type
+            string selectedSubType = comboBox4_armor_itens_sub_type.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedSubType))
+            {
+                LoadArmorItemNames(selectedSubType);
+            }
+        }
+
+        private void LoadArmorIcon(string selectedItemName) 
+        {
+            string iconsBasePath = @"E:\Projetos Csharp\Perfect_World_2021\items\icons";
+
+            // Procura o arquivo de ícone recursivamente
+            string[] iconFiles = Directory.GetFiles(iconsBasePath, selectedItemName + ".png", SearchOption.AllDirectories);
+
+            if (iconFiles.Length > 0)
+            {
+                // Carrega o primeiro arquivo encontrado no PictureBox
+                pictureBox1.Image = Image.FromFile(iconFiles[0]);
+            }
+            else
+            {
+                // Limpa o PictureBox se o ícone não for encontrado
+                pictureBox5.Image = null;
+                MessageBox.Show($"O ícone para o item '{selectedItemName}' não foi encontrado em nenhuma subpasta de:\n{iconsBasePath}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ComboBox5_armor_itens_item_name_SelectedIndexChanged(object sender, EventArgs e) 
+        {
+            // Obtém o item selecionado no comboBox5_armor_itens_item_name
+            string selectedItemName = comboBox5_armor_itens_item_name.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedItemName))
+            {
+                LoadArmorIcon(selectedItemName);
+            }
+        }
+
+        // Accessory
+        private void LoadAccessoryItems()  
+        {
+            string accessoryItemsPath = @"E:\Projetos Csharp\Perfect_World_2021\items\Accessory";
+
+            // Verifica se o diretório existe
+            if (Directory.Exists(accessoryItemsPath))
+            {
+                // Obtém todos os diretórios no caminho especificado
+                string[] directories = Directory.GetDirectories(accessoryItemsPath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox3_accessory_itens_type.Items.Clear();
+
+                // Adiciona os nomes das pastas ao ComboBox
+                foreach (string directory in directories)
+                {
+                    comboBox3_accessory_itens_type.Items.Add(Path.GetFileName(directory));
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox3_accessory_itens_type.Items.Count < 0)
+                {
+                    comboBox3_accessory_itens_type.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("O diretório especificado não foi encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadAccessorySubTypes(string selectedFolder) 
+        {
+            string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Accessory";
+            string folderPath = Path.Combine(basePath, selectedFolder);
+
+            // Verifica se a pasta selecionada existe
+            if (Directory.Exists(folderPath))
+            {
+                // Obtém todas as subpastas
+                string[] subDirectories = Directory.GetDirectories(folderPath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox4_accessory_itens_sub_type.Items.Clear();
+
+                // Adiciona os nomes das subpastas ao ComboBox
+                foreach (string subDirectory in subDirectories)
+                {
+                    comboBox4_accessory_itens_sub_type.Items.Add(Path.GetFileName(subDirectory));
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox4_accessory_itens_sub_type.Items.Count > 0)
+                {
+                    comboBox4_accessory_itens_sub_type.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("A pasta selecionada não foi encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ComboBox3_accessory_itens_type_SelectedIndexChanged(object sender, EventArgs e) 
+        {
+            // Obtém o item selecionado no comboBox3_accessory_itens_type
+            string selectedFolder = comboBox3_accessory_itens_type.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedFolder))
+            {
+                LoadAccessorySubTypes(selectedFolder);
+            }
+        }
+
+        private void LoadAccessoryItemNames(string selectedSubType)
+        {
+            string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Accessory";
+            string subTypeFolderPath = Path.Combine(basePath, selectedSubType, selectedSubType);
+
+            // Constrói o caminho do arquivo .txt
+            string filePath = Path.Combine(subTypeFolderPath, selectedSubType + ".txt");
+
+            // Verifica se o arquivo existe
+            if (File.Exists(filePath))
+            {
+                // Lê todas as linhas do arquivo
+                string[] itemNames = File.ReadAllLines(filePath);
+
+                // Limpa os itens existentes no ComboBox
+                comboBox5_accessory_itens_item_name.Items.Clear();
+
+                // Adiciona os nomes dos itens ao ComboBox
+                foreach (string itemName in itemNames)
+                {
+                    comboBox5_accessory_itens_item_name.Items.Add(itemName.Trim());
+                }
+
+                // Define o primeiro item como selecionado, se houver itens
+                if (comboBox5_accessory_itens_item_name.Items.Count > 0)
+                {
+                    comboBox5_accessory_itens_item_name.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show($"O arquivo de itens para '{selectedSubType}' não foi encontrado no caminho esperado:\n{filePath}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ComboBox4_accessory_itens_sub_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtém o item selecionado no comboBox4_accessory_itens_sub_type
+            string selectedSubType = comboBox4_accessory_itens_sub_type.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedSubType))
+            {
+                LoadAccessoryItemNames(selectedSubType);
+            }
+        }
+
+        private void LoadAccessoryIcon(string selectedItemName)
+        {
+            string iconsBasePath = @"E:\Projetos Csharp\Perfect_World_2021\items\icons";
+
+            // Procura o arquivo de ícone recursivamente
+            string[] iconFiles = Directory.GetFiles(iconsBasePath, selectedItemName + ".png", SearchOption.AllDirectories);
+
+            if (iconFiles.Length > 0)
+            {
+                // Carrega o primeiro arquivo encontrado no PictureBox
+                pictureBox1.Image = Image.FromFile(iconFiles[0]);
+            }
+            else
+            {
+                // Limpa o PictureBox se o ícone não for encontrado
+                pictureBox6.Image = null;
+                MessageBox.Show($"O ícone para o item '{selectedItemName}' não foi encontrado em nenhuma subpasta de:\n{iconsBasePath}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ComboBox5_accessory_itens_item_name_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtém o item selecionado no comboBox5_accessory_itens_item_name
+            string selectedItemName = comboBox5_accessory_itens_item_name.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedItemName))
+            {
+                LoadAccessoryIcon(selectedItemName);
+            }
         }
     }
 }

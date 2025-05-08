@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Perfect_World_2021
 {
-    internal class Necklace
+    internal class Accessory
     {
         private const string IconDirectory = @"E:\Projetos Csharp\Perfect_World_2021\icons";
 

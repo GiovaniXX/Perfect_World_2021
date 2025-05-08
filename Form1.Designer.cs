@@ -31,7 +31,7 @@ namespace Perfect_World_2021
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1_pwe_2021));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage_armors = new System.Windows.Forms.TabPage();
+            this.tabPage_armor = new System.Windows.Forms.TabPage();
             this.pictureBox1_logo_pw = new System.Windows.Forms.PictureBox();
             this.textBox1_armor_generate = new System.Windows.Forms.TextBox();
             this.button2_armor_generate = new System.Windows.Forms.Button();
@@ -101,7 +101,7 @@ namespace Perfect_World_2021
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage_weapons = new System.Windows.Forms.TabPage();
+            this.tabPage_weapon = new System.Windows.Forms.TabPage();
             this.pictureBox2_logo_pw = new System.Windows.Forms.PictureBox();
             this.textBox1_weapon_generate = new System.Windows.Forms.TextBox();
             this.button4_weapon_generate = new System.Windows.Forms.Button();
@@ -263,14 +263,14 @@ namespace Perfect_World_2021
             this.pictureBox6_foto_Developer = new System.Windows.Forms.PictureBox();
             this.label96_logo_Marca = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
-            this.tabPage_armors.SuspendLayout();
+            this.tabPage_armor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_logo_pw)).BeginInit();
             this.gpb_itens.SuspendLayout();
             this.gpb_bonusList.SuspendLayout();
             this.gpb_add.SuspendLayout();
             this.gpb_general.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            this.tabPage_weapons.SuspendLayout();
+            this.tabPage_weapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2_logo_pw)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -295,8 +295,8 @@ namespace Perfect_World_2021
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage_armors);
-            this.tabControl1.Controls.Add(this.tabPage_weapons);
+            this.tabControl1.Controls.Add(this.tabPage_armor);
+            this.tabControl1.Controls.Add(this.tabPage_weapon);
             this.tabControl1.Controls.Add(this.tabPage_accessory);
             this.tabControl1.Controls.Add(this.tabPage_developer);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
@@ -304,24 +304,25 @@ namespace Perfect_World_2021
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(789, 500);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.OnItemSelected);
             // 
-            // tabPage_armors
+            // tabPage_armor
             // 
-            this.tabPage_armors.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage_armors.Controls.Add(this.pictureBox1_logo_pw);
-            this.tabPage_armors.Controls.Add(this.textBox1_armor_generate);
-            this.tabPage_armors.Controls.Add(this.button2_armor_generate);
-            this.tabPage_armors.Controls.Add(this.button1_armor_reset);
-            this.tabPage_armors.Controls.Add(this.gpb_itens);
-            this.tabPage_armors.Controls.Add(this.gpb_bonusList);
-            this.tabPage_armors.Controls.Add(this.gpb_add);
-            this.tabPage_armors.Controls.Add(this.gpb_general);
-            this.tabPage_armors.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_armors.Name = "tabPage_armors";
-            this.tabPage_armors.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_armors.Size = new System.Drawing.Size(781, 474);
-            this.tabPage_armors.TabIndex = 0;
-            this.tabPage_armors.Text = "Armors";
+            this.tabPage_armor.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage_armor.Controls.Add(this.pictureBox1_logo_pw);
+            this.tabPage_armor.Controls.Add(this.textBox1_armor_generate);
+            this.tabPage_armor.Controls.Add(this.button2_armor_generate);
+            this.tabPage_armor.Controls.Add(this.button1_armor_reset);
+            this.tabPage_armor.Controls.Add(this.gpb_itens);
+            this.tabPage_armor.Controls.Add(this.gpb_bonusList);
+            this.tabPage_armor.Controls.Add(this.gpb_add);
+            this.tabPage_armor.Controls.Add(this.gpb_general);
+            this.tabPage_armor.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_armor.Name = "tabPage_armor";
+            this.tabPage_armor.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_armor.Size = new System.Drawing.Size(781, 474);
+            this.tabPage_armor.TabIndex = 0;
+            this.tabPage_armor.Text = "Armor";
             // 
             // pictureBox1_logo_pw
             // 
@@ -457,13 +458,6 @@ namespace Perfect_World_2021
             // comboBox3_armor_itens_type
             // 
             this.comboBox3_armor_itens_type.FormattingEnabled = true;
-            this.comboBox3_armor_itens_type.Items.AddRange(new object[] {
-            "Corpo",
-            "Braços",
-            "Botas",
-            "Capacetes",
-            "Braceletes",
-            "Mantos"});
             this.comboBox3_armor_itens_type.Location = new System.Drawing.Point(77, 12);
             this.comboBox3_armor_itens_type.Name = "comboBox3_armor_itens_type";
             this.comboBox3_armor_itens_type.Size = new System.Drawing.Size(204, 21);
@@ -1041,23 +1035,23 @@ namespace Perfect_World_2021
             this.label1.TabIndex = 0;
             this.label1.Text = "Str Req";
             // 
-            // tabPage_weapons
+            // tabPage_weapon
             // 
-            this.tabPage_weapons.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage_weapons.Controls.Add(this.pictureBox2_logo_pw);
-            this.tabPage_weapons.Controls.Add(this.textBox1_weapon_generate);
-            this.tabPage_weapons.Controls.Add(this.button4_weapon_generate);
-            this.tabPage_weapons.Controls.Add(this.button3_weapon_reset);
-            this.tabPage_weapons.Controls.Add(this.groupBox4);
-            this.tabPage_weapons.Controls.Add(this.groupBox3);
-            this.tabPage_weapons.Controls.Add(this.groupBox2);
-            this.tabPage_weapons.Controls.Add(this.groupBox1);
-            this.tabPage_weapons.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_weapons.Name = "tabPage_weapons";
-            this.tabPage_weapons.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_weapons.Size = new System.Drawing.Size(781, 474);
-            this.tabPage_weapons.TabIndex = 1;
-            this.tabPage_weapons.Text = "Weapons";
+            this.tabPage_weapon.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage_weapon.Controls.Add(this.pictureBox2_logo_pw);
+            this.tabPage_weapon.Controls.Add(this.textBox1_weapon_generate);
+            this.tabPage_weapon.Controls.Add(this.button4_weapon_generate);
+            this.tabPage_weapon.Controls.Add(this.button3_weapon_reset);
+            this.tabPage_weapon.Controls.Add(this.groupBox4);
+            this.tabPage_weapon.Controls.Add(this.groupBox3);
+            this.tabPage_weapon.Controls.Add(this.groupBox2);
+            this.tabPage_weapon.Controls.Add(this.groupBox1);
+            this.tabPage_weapon.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_weapon.Name = "tabPage_weapon";
+            this.tabPage_weapon.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_weapon.Size = new System.Drawing.Size(781, 474);
+            this.tabPage_weapon.TabIndex = 1;
+            this.tabPage_weapon.Text = "Weapon";
             // 
             // pictureBox2_logo_pw
             // 
@@ -1176,49 +1170,7 @@ namespace Perfect_World_2021
             // 
             this.comboBox5_weapon_itens_item_name.FormattingEnabled = true;
             this.comboBox5_weapon_itens_item_name.Items.AddRange(new object[] {
-            "Without Name",
-            "Lâmina de teste",
-            "☆GM Fim de Jogo",
-            "☆☆Falcão de Combate",
-            "☆Espada de You Xia",
-            "☆Lâmina com Ponta de Aço",
-            "☆☆Lâmina com Ponta de Aço",
-            "☆☆☆Lâmina com Ponta de Aço",
-            "☆Lâmina de Ferro Revestido",
-            "☆☆Lâmina de Ferro Revestido",
-            "☆☆☆Lâmina de Ferro Revestido",
-            "☆Lâmina com Ponta Fantasma",
-            "☆☆Lâmina com Ponta Fantasma",
-            "☆☆☆Lâmina com Ponta Fantasma",
-            "☆Lâmina das Cem Batalhas",
-            "☆☆Lâminas das Cem Batalhas",
-            "☆☆☆Lâmina das Cem batalhas",
-            "☆Lâmina de partir Formação",
-            "☆☆Lâmina de partir Formação",
-            "☆☆☆Lâmina de partir Formação",
-            "☆Lâmina da Sombra Negra",
-            "☆Lâmina Comum",
-            "☆☆Lâmina Comum",
-            "☆☆☆Lâmina Comum",
-            "☆Espada de Lobo de Sangue",
-            "☆Lâmina de Retornar Poeira",
-            "☆☆Lâmina de Retornar Poeira",
-            "☆☆☆Lâmina de Retornar Poeira",
-            "☆Faca de Ossos",
-            "☆Faca de Skinner",
-            "☆Lâmina das Cores Exuberantes",
-            "☆☆Lâmina das Cores Exuberantes",
-            "☆☆☆Lâmina das Cores Exuberantes",
-            "☆Lâmina do Dente Sanguinário",
-            "☆Lâmina do General Fantasma",
-            "☆Lâmina do Guerreiro",
-            "☆Lâmina Desajeitada",
-            "☆☆Lâmina Desajeitada",
-            "☆☆☆Lâmina Desajeitada",
-            "☆Espada do Samurai",
-            "☆Lâmina do Dragão",
-            "☆Ponta de Shenluo",
-            "☆Lâmina do Poder"});
+            ""});
             this.comboBox5_weapon_itens_item_name.Location = new System.Drawing.Point(77, 68);
             this.comboBox5_weapon_itens_item_name.Name = "comboBox5_weapon_itens_item_name";
             this.comboBox5_weapon_itens_item_name.Size = new System.Drawing.Size(204, 21);
@@ -1228,11 +1180,6 @@ namespace Perfect_World_2021
             // comboBox4_weapon_itens_sub_type
             // 
             this.comboBox4_weapon_itens_sub_type.FormattingEnabled = true;
-            this.comboBox4_weapon_itens_sub_type.Items.AddRange(new object[] {
-            "Lâmina",
-            "Espada",
-            "Espada Duplas",
-            "Lâminas Duplas"});
             this.comboBox4_weapon_itens_sub_type.Location = new System.Drawing.Point(77, 40);
             this.comboBox4_weapon_itens_sub_type.Name = "comboBox4_weapon_itens_sub_type";
             this.comboBox4_weapon_itens_sub_type.Size = new System.Drawing.Size(204, 21);
@@ -1242,20 +1189,6 @@ namespace Perfect_World_2021
             // comboBox3_weapon_itens_type
             // 
             this.comboBox3_weapon_itens_type.FormattingEnabled = true;
-            this.comboBox3_weapon_itens_type.Items.AddRange(new object[] {
-            "Espadas & Lâminas",
-            "Lanças",
-            "Machados & martelos",
-            "Armas gamas",
-            "Punhos",
-            "Long Whip",
-            "Magia",
-            "Adagas",
-            "Orbes",
-            "Sabre",
-            "Foice",
-            "Espada & Escudo",
-            "Armas de Fogo"});
             this.comboBox3_weapon_itens_type.Location = new System.Drawing.Point(77, 12);
             this.comboBox3_weapon_itens_type.Name = "comboBox3_weapon_itens_type";
             this.comboBox3_weapon_itens_type.Size = new System.Drawing.Size(204, 21);
@@ -1978,10 +1911,6 @@ namespace Perfect_World_2021
             // comboBox4_accessory_itens_sub_type
             // 
             this.comboBox4_accessory_itens_sub_type.FormattingEnabled = true;
-            this.comboBox4_accessory_itens_sub_type.Items.AddRange(new object[] {
-            "Elemental Necklace",
-            "Ethereal Necklace",
-            "Protection Necklace"});
             this.comboBox4_accessory_itens_sub_type.Location = new System.Drawing.Point(77, 40);
             this.comboBox4_accessory_itens_sub_type.Name = "comboBox4_accessory_itens_sub_type";
             this.comboBox4_accessory_itens_sub_type.Size = new System.Drawing.Size(204, 21);
@@ -1991,10 +1920,6 @@ namespace Perfect_World_2021
             // comboBox3_accessory_itens_type
             // 
             this.comboBox3_accessory_itens_type.FormattingEnabled = true;
-            this.comboBox3_accessory_itens_type.Items.AddRange(new object[] {
-            "Necklace",
-            "Waist Adorn",
-            "Ring"});
             this.comboBox3_accessory_itens_type.Location = new System.Drawing.Point(77, 12);
             this.comboBox3_accessory_itens_type.Name = "comboBox3_accessory_itens_type";
             this.comboBox3_accessory_itens_type.Size = new System.Drawing.Size(204, 21);
@@ -2758,8 +2683,8 @@ namespace Perfect_World_2021
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Perfect World XML Editor 2025";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage_armors.ResumeLayout(false);
-            this.tabPage_armors.PerformLayout();
+            this.tabPage_armor.ResumeLayout(false);
+            this.tabPage_armor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_logo_pw)).EndInit();
             this.gpb_itens.ResumeLayout(false);
             this.gpb_itens.PerformLayout();
@@ -2770,8 +2695,8 @@ namespace Perfect_World_2021
             this.gpb_general.ResumeLayout(false);
             this.gpb_general.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            this.tabPage_weapons.ResumeLayout(false);
-            this.tabPage_weapons.PerformLayout();
+            this.tabPage_weapon.ResumeLayout(false);
+            this.tabPage_weapon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2_logo_pw)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -2810,8 +2735,8 @@ namespace Perfect_World_2021
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage_armors;
-        private System.Windows.Forms.TabPage tabPage_weapons;
+        private System.Windows.Forms.TabPage tabPage_armor;
+        private System.Windows.Forms.TabPage tabPage_weapon;
         private System.Windows.Forms.TabPage tabPage_accessory;
         private System.Windows.Forms.GroupBox gpb_general;
         private System.Windows.Forms.TextBox textBox12_armor_general_dur_mm;

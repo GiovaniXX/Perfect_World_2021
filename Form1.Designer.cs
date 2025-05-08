@@ -262,6 +262,9 @@ namespace Perfect_World_2021
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox6_foto_Developer = new System.Windows.Forms.PictureBox();
             this.label96_logo_Marca = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage_armor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_logo_pw)).BeginInit();
@@ -746,6 +749,7 @@ namespace Perfect_World_2021
             // 
             // gpb_general
             // 
+            this.gpb_general.Controls.Add(this.label15);
             this.gpb_general.Controls.Add(this.label17_general_armor_sub_type);
             this.gpb_general.Controls.Add(this.label12);
             this.gpb_general.Controls.Add(this.label13);
@@ -788,7 +792,7 @@ namespace Perfect_World_2021
             // 
             this.label17_general_armor_sub_type.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label17_general_armor_sub_type.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label17_general_armor_sub_type.Location = new System.Drawing.Point(6, 40);
+            this.label17_general_armor_sub_type.Location = new System.Drawing.Point(6, 32);
             this.label17_general_armor_sub_type.Name = "label17_general_armor_sub_type";
             this.label17_general_armor_sub_type.Size = new System.Drawing.Size(135, 20);
             this.label17_general_armor_sub_type.TabIndex = 81;
@@ -798,7 +802,7 @@ namespace Perfect_World_2021
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Crimson;
-            this.label12.Location = new System.Drawing.Point(6, 64);
+            this.label12.Location = new System.Drawing.Point(6, 114);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(135, 13);
             this.label12.TabIndex = 85;
@@ -809,7 +813,7 @@ namespace Perfect_World_2021
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Crimson;
-            this.label13.Location = new System.Drawing.Point(6, 23);
+            this.label13.Location = new System.Drawing.Point(6, 15);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(135, 13);
             this.label13.TabIndex = 84;
@@ -819,7 +823,7 @@ namespace Perfect_World_2021
             // pictureBox6
             // 
             this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox6.Location = new System.Drawing.Point(54, 83);
+            this.pictureBox6.Location = new System.Drawing.Point(54, 75);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(32, 32);
             this.pictureBox6.TabIndex = 83;
@@ -829,7 +833,7 @@ namespace Perfect_World_2021
             // 
             this.label15_general_armor_item_name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label15_general_armor_item_name.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label15_general_armor_item_name.Location = new System.Drawing.Point(6, 122);
+            this.label15_general_armor_item_name.Location = new System.Drawing.Point(6, 132);
             this.label15_general_armor_item_name.Name = "label15_general_armor_item_name";
             this.label15_general_armor_item_name.Size = new System.Drawing.Size(135, 20);
             this.label15_general_armor_item_name.TabIndex = 82;
@@ -1451,6 +1455,7 @@ namespace Perfect_World_2021
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label15_freq_atq);
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.label30);
@@ -1507,7 +1512,7 @@ namespace Perfect_World_2021
             // 
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.Color.Crimson;
-            this.label35.Location = new System.Drawing.Point(6, 64);
+            this.label35.Location = new System.Drawing.Point(6, 114);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(135, 13);
             this.label35.TabIndex = 80;
@@ -1518,7 +1523,7 @@ namespace Perfect_World_2021
             // 
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.Crimson;
-            this.label30.Location = new System.Drawing.Point(6, 23);
+            this.label30.Location = new System.Drawing.Point(6, 15);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(135, 13);
             this.label30.TabIndex = 79;
@@ -1528,7 +1533,7 @@ namespace Perfect_World_2021
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(54, 83);
+            this.pictureBox1.Location = new System.Drawing.Point(54, 75);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.TabIndex = 78;
@@ -1554,7 +1559,7 @@ namespace Perfect_World_2021
             // 
             this.label30_general_weapon_item_name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label30_general_weapon_item_name.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label30_general_weapon_item_name.Location = new System.Drawing.Point(6, 122);
+            this.label30_general_weapon_item_name.Location = new System.Drawing.Point(6, 132);
             this.label30_general_weapon_item_name.Name = "label30_general_weapon_item_name";
             this.label30_general_weapon_item_name.Size = new System.Drawing.Size(135, 20);
             this.label30_general_weapon_item_name.TabIndex = 75;
@@ -1564,7 +1569,7 @@ namespace Perfect_World_2021
             // 
             this.label29_general_weapon_sub_type.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label29_general_weapon_sub_type.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label29_general_weapon_sub_type.Location = new System.Drawing.Point(6, 40);
+            this.label29_general_weapon_sub_type.Location = new System.Drawing.Point(6, 32);
             this.label29_general_weapon_sub_type.Name = "label29_general_weapon_sub_type";
             this.label29_general_weapon_sub_type.Size = new System.Drawing.Size(135, 20);
             this.label29_general_weapon_sub_type.TabIndex = 74;
@@ -2181,6 +2186,7 @@ namespace Perfect_World_2021
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.label17);
             this.groupBox6.Controls.Add(this.label37);
             this.groupBox6.Controls.Add(this.pictureBox5);
             this.groupBox6.Controls.Add(this.label36);
@@ -2223,7 +2229,7 @@ namespace Perfect_World_2021
             // 
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.Crimson;
-            this.label37.Location = new System.Drawing.Point(6, 64);
+            this.label37.Location = new System.Drawing.Point(6, 114);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(135, 13);
             this.label37.TabIndex = 82;
@@ -2233,7 +2239,7 @@ namespace Perfect_World_2021
             // pictureBox5
             // 
             this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox5.Location = new System.Drawing.Point(54, 83);
+            this.pictureBox5.Location = new System.Drawing.Point(54, 75);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(32, 32);
             this.pictureBox5.TabIndex = 81;
@@ -2243,7 +2249,7 @@ namespace Perfect_World_2021
             // 
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.ForeColor = System.Drawing.Color.Crimson;
-            this.label36.Location = new System.Drawing.Point(6, 23);
+            this.label36.Location = new System.Drawing.Point(6, 15);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(135, 13);
             this.label36.TabIndex = 80;
@@ -2457,7 +2463,7 @@ namespace Perfect_World_2021
             // 
             this.label2_general_accessory_item_name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2_general_accessory_item_name.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label2_general_accessory_item_name.Location = new System.Drawing.Point(6, 122);
+            this.label2_general_accessory_item_name.Location = new System.Drawing.Point(6, 132);
             this.label2_general_accessory_item_name.Name = "label2_general_accessory_item_name";
             this.label2_general_accessory_item_name.Size = new System.Drawing.Size(135, 20);
             this.label2_general_accessory_item_name.TabIndex = 38;
@@ -2468,7 +2474,7 @@ namespace Perfect_World_2021
             this.label1_general_accessory_sub_type.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1_general_accessory_sub_type.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1_general_accessory_sub_type.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label1_general_accessory_sub_type.Location = new System.Drawing.Point(6, 40);
+            this.label1_general_accessory_sub_type.Location = new System.Drawing.Point(6, 32);
             this.label1_general_accessory_sub_type.Name = "label1_general_accessory_sub_type";
             this.label1_general_accessory_sub_type.Size = new System.Drawing.Size(135, 20);
             this.label1_general_accessory_sub_type.TabIndex = 37;
@@ -2669,6 +2675,39 @@ namespace Perfect_World_2021
             this.label96_logo_Marca.Size = new System.Drawing.Size(122, 19);
             this.label96_logo_Marca.TabIndex = 1;
             this.label96_logo_Marca.Text = "GVC_Desenvolvimentos";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Crimson;
+            this.label15.Location = new System.Drawing.Point(44, 57);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 13);
+            this.label15.TabIndex = 86;
+            this.label15.Text = "Surface";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Crimson;
+            this.label16.Location = new System.Drawing.Point(44, 57);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 13);
+            this.label16.TabIndex = 87;
+            this.label16.Text = "Surface";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Crimson;
+            this.label17.Location = new System.Drawing.Point(44, 57);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(51, 13);
+            this.label17.TabIndex = 87;
+            this.label17.Text = "Surface";
             // 
             // Form1_pwe_2021
             // 
@@ -2966,6 +3005,9 @@ namespace Perfect_World_2021
         private System.Windows.Forms.Button button3_accessory_clear;
         private System.Windows.Forms.Button button1_armor_clear;
         private System.Windows.Forms.Button button2_weapon_clear;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
 

@@ -30,6 +30,9 @@ namespace Perfect_World_2021
             comboBox3_accessory_itens_type.SelectedIndexChanged += ComboBox3_accessory_itens_type_SelectedIndexChanged;
             comboBox4_accessory_itens_sub_type.SelectedIndexChanged += ComboBox4_accessory_itens_sub_type_SelectedIndexChanged;
             comboBox5_accessory_itens_item_name.SelectedIndexChanged += ComboBox5_accessory_itens_item_name_SelectedIndexChanged;
+
+            // Adiciona o evento KeyPress para validar apenas números
+            textBox2_weapon_bonus_list_bonus.KeyPress += TextBox2_weapon_bonus_list_bonus_KeyPress;
         }
 
         private void button4_armor_add_Click(object sender, EventArgs e)
@@ -141,7 +144,7 @@ namespace Perfect_World_2021
             if (string.IsNullOrWhiteSpace(comboBox2_weapon_bonus_list.Text) ||
                 string.IsNullOrWhiteSpace(textBox2_weapon_bonus_list_bonus.Text))
             {
-                MessageBox.Show("Preencha todos os campos antes de adicionar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencha todos os campos do Bonus List antes de adicionar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -150,6 +153,15 @@ namespace Perfect_World_2021
 
             // Adiciona o item ao TextBox
             textBox1_weapon_bonus_list.AppendText(item + Environment.NewLine);
+        }
+
+        private void TextBox2_weapon_bonus_list_bonus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite apenas números e a tecla Backspace
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada de caracteres inválidos
+            }
         }
 
         private void button3_weapon_dell_Click(object sender, EventArgs e)
@@ -675,7 +687,7 @@ namespace Perfect_World_2021
         }
 
         // Armor
-        private void LoadArmorItems() 
+        private void LoadArmorItems()
         {
             string armorItemsPath = @"E:\Projetos Csharp\Perfect_World_2021\items\Armors";
 
@@ -706,7 +718,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void LoadArmorSubTypes(string selectedFolder) 
+        private void LoadArmorSubTypes(string selectedFolder)
         {
             string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Armors";
             string folderPath = Path.Combine(basePath, selectedFolder);
@@ -738,18 +750,18 @@ namespace Perfect_World_2021
             }
         }
 
-        private void ComboBox3_armor_itens_type_SelectedIndexChanged(object sender, EventArgs e) 
+        private void ComboBox3_armor_itens_type_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Obtém o item selecionado no comboBox3_weapon_itens_type
             string selectedFolder = comboBox3_armor_itens_type.SelectedItem?.ToString();
 
             if (!string.IsNullOrEmpty(selectedFolder))
             {
-                LoadArmorSubTypes(selectedFolder); 
+                LoadArmorSubTypes(selectedFolder);
             }
         }
 
-        private void LoadArmorItemNames(string selectedSubType) 
+        private void LoadArmorItemNames(string selectedSubType)
         {
             string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Armors";
             string subTypeFolderPath = Path.Combine(basePath, selectedSubType, selectedSubType);
@@ -784,7 +796,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void ComboBox4_armor_itens_sub_type_SelectedIndexChanged(object sender, EventArgs e) 
+        private void ComboBox4_armor_itens_sub_type_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Obtém o item selecionado no comboBox4_weapon_itens_sub_type
             string selectedSubType = comboBox4_armor_itens_sub_type.SelectedItem?.ToString();
@@ -795,7 +807,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void LoadArmorIcon(string selectedItemName) 
+        private void LoadArmorIcon(string selectedItemName)
         {
             string iconsBasePath = @"E:\Projetos Csharp\Perfect_World_2021\items\icons";
 
@@ -815,7 +827,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void ComboBox5_armor_itens_item_name_SelectedIndexChanged(object sender, EventArgs e) 
+        private void ComboBox5_armor_itens_item_name_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Obtém o item selecionado no comboBox5_armor_itens_item_name
             string selectedItemName = comboBox5_armor_itens_item_name.SelectedItem?.ToString();
@@ -827,7 +839,7 @@ namespace Perfect_World_2021
         }
 
         // Accessory
-        private void LoadAccessoryItems()  
+        private void LoadAccessoryItems()
         {
             string accessoryItemsPath = @"E:\Projetos Csharp\Perfect_World_2021\items\Accessory";
 
@@ -858,7 +870,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void LoadAccessorySubTypes(string selectedFolder) 
+        private void LoadAccessorySubTypes(string selectedFolder)
         {
             string basePath = @"E:\Projetos Csharp\Perfect_World_2021\items\Accessory";
             string folderPath = Path.Combine(basePath, selectedFolder);
@@ -890,7 +902,7 @@ namespace Perfect_World_2021
             }
         }
 
-        private void ComboBox3_accessory_itens_type_SelectedIndexChanged(object sender, EventArgs e) 
+        private void ComboBox3_accessory_itens_type_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Obtém o item selecionado no comboBox3_accessory_itens_type
             string selectedFolder = comboBox3_accessory_itens_type.SelectedItem?.ToString();
